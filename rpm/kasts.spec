@@ -37,7 +37,7 @@ Requires:       opt-kf5-threadweaver
 Requires:       opt-kf5-syndication
 Requires:       qt5keychain
 
-%global __requires_exclude ^libKMediaSession.*$
+%global __requires_exclude ^[libKMediaSession|libKastsSolidExtras].*$
 %{?opt_kf5_default_filter}
 
 %description
