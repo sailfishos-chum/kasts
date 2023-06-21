@@ -17,7 +17,7 @@ BuildRequires:  opt-extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  taglib-devel
 BuildRequires:  opt-qt5-qtbase-devel
-BuildRequires:  qt5keychain-devel
+BuildRequires:  opt-qt5-qtkeychain-devel
 BuildRequires:  opt-qt5-qtmultimedia-devel
 BuildRequires:  opt-qt5-qtquickcontrols2-devel
 BuildRequires:  opt-qt5-qtsvg-devel
@@ -35,7 +35,7 @@ Requires:       opt-kf5-kirigami2
 Requires:       opt-kf5-kirigami-addons
 Requires:       opt-kf5-threadweaver
 Requires:       opt-kf5-syndication
-Requires:       qt5keychain
+Requires:       opt-qt5-qtkeychain
 
 %global __requires_exclude ^[libKMediaSession|libKastsSolidExtras].*$
 %{?opt_kf5_default_filter}
