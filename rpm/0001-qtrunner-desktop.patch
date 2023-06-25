@@ -15,7 +15,7 @@ index 590291d..ee78b6d 100644
  X-KDE-FormFactor=desktop;tablet;handset;
  StartupNotify=true
 +
-+-Nemo-Single-Instance=no
++X-Nemo-Single-Instance=no
 +X-Nemo-Application-Type=no-invoker
 +
 +[X-Sailjail]
