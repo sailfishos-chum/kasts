@@ -1,5 +1,5 @@
 Name:           kasts
-Version:        23.08.0
+Version:        23.08.5
 Release:        1%{?dist}
 License:        GPLv2 and GPLv2+ and GPLv3+ and BSD and LGPLv3+
 Summary:        A mobile podcast application
