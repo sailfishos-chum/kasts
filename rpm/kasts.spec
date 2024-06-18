@@ -50,19 +50,13 @@ Requires:       opt-qt5-qtkeychain
 export QTDIR=%{_opt_qt5_prefix}
 touch .git
 
-mkdir -p build
-pushd build
-
 %_opt_cmake_kf5 ../ \
 		-DKDE_INSTALL_BINDIR:PATH=/usr/bin \
 		-DCMAKE_INSTALL_PREFIX:PATH=/usr/
-%make_build
-popd
+%cmake_build
 
 %install
-pushd build
-make DESTDIR=%{buildroot} install
-popd
+%cmake_install
 
 # copy icons
 install -p -m644 -D %{SOURCE1} \
