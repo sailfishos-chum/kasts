@@ -1,5 +1,5 @@
 Name:           kasts
-Version:        23.08.5
+Version:        24.08.2
 Release:        1%{?dist}
 License:        GPLv2 and GPLv2+ and GPLv3+ and BSD and LGPLv3+
 Summary:        A mobile podcast application
@@ -16,29 +16,27 @@ BuildRequires:  cmake
 BuildRequires:  opt-extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  taglib-devel
-BuildRequires:  opt-qt5-qtbase-devel
-BuildRequires:  opt-qt5-qtkeychain-devel
-BuildRequires:  opt-qt5-qtmultimedia-devel
-BuildRequires:  opt-qt5-qtquickcontrols2-devel
-BuildRequires:  opt-qt5-qtsvg-devel
-BuildRequires:  opt-kf5-kconfig-devel
-BuildRequires:  opt-kf5-kcoreaddons-devel
-BuildRequires:  opt-kf5-ki18n-devel
-BuildRequires:  opt-kf5-kirigami2-devel
-BuildRequires:  opt-kf5-kirigami-addons
-BuildRequires:  opt-kf5-syndication-devel
-BuildRequires:  opt-kf5-threadweaver-devel
-BuildRequires:  opt-kf5-rpm-macros
-BuildRequires:  opt-kf5-kcodecs-devel
+BuildRequires:  qt6-qtbase-devel
+BuildRequires:  qt6-qtkeychain-devel
+BuildRequires:  qt6-qtmultimedia-devel
+BuildRequires:  qt6-qtsvg-devel
+BuildRequires:  kf6-kconfig-devel
+BuildRequires:  kf6-kcoreaddons-devel
+BuildRequires:  kf6-ki18n-devel
+BuildRequires:  kf6-kirigami-devel
+BuildRequires:  kf6-kirigami-addons-devel
+BuildRequires:  kf6-syndication-devel
+BuildRequires:  kf6-threadweaver-devel
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  kf6-kcodecs-devel
 
-Requires:       opt-kf5-kirigami2
-Requires:       opt-kf5-kirigami-addons
-Requires:       opt-kf5-threadweaver
-Requires:       opt-kf5-syndication
-Requires:       opt-qt5-qtkeychain
+Requires:       kf6-kirigami
+Requires:       kf6-kirigami-addons
+Requires:       kf6-threadweaver
+Requires:       kf6-syndication
+Requires:       qt6-qtkeychain
 
 %global __requires_exclude ^[libKMediaSession|libKastsSolidExtras].*$
-%{?opt_kf5_default_filter}
 
 %description
 %{summary}.
@@ -47,12 +45,8 @@ Requires:       opt-qt5-qtkeychain
 %autosetup -n %{name}-%{version}/upstream -p1
 
 %build
-export QTDIR=%{_opt_qt5_prefix}
-touch .git
 
-%_opt_cmake_kf5 ../ \
-		-DKDE_INSTALL_BINDIR:PATH=/usr/bin \
-		-DCMAKE_INSTALL_PREFIX:PATH=/usr/
+%cmake_kf6
 %cmake_build
 
 %install
@@ -76,11 +70,11 @@ install -p -m644 -D %{SOURCE4} \
 %{_datadir}/icons/hicolor/scalable/actions/media-playback-cloud.svg
 %{_datadir}/icons/hicolor/scalable/apps/%{name}*.svg
 %{_datadir}/icons/hicolor/*/apps/%{name}.*
-%{_opt_kf5_libdir}/libKastsSolidExtras.so
-%{_opt_kf5_libdir}/libKMediaSession.so
-%{_opt_kf5_libdir}/qt5/qml/org/kde/kmediasession/libkmediasession-qmlplugin.so
-%{_opt_kf5_libdir}/qt5/qml/org/kde/kmediasession/qmldir
-%{_opt_kf5_metainfodir}/org.kde.%{name}.appdata.xml
-%{_opt_kf5_qmldir}/org/kde/%{name}/solidextras/libkasts-solidextrasqmlplugin.so
-%{_opt_kf5_qmldir}/org/kde/%{name}/solidextras/qmldir
+#{_libdir}/libKastsSolidExtras.so
+%{_libdir}/libKMediaSession.so
+#{_libdir}/qt6/qml/org/kde/kmediasession/libkmediasession-qmlplugin.so
+#{}_libdir}/qt6/qml/org/kde/kmediasession/qmldir
+%{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
+#{_kf6_qmldir}/org/kde/#{name}/solidextras/libkasts-solidextrasqmlplugin.so
+#{_kf6_qmldir}/org/kde/#{name}/solidextras/qmldir
 %license LICENSES/*
