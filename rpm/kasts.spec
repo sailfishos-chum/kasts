@@ -29,6 +29,7 @@ BuildRequires:  kf6-syndication-devel
 BuildRequires:  kf6-threadweaver-devel
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  kf6-kcodecs-devel
+BuildRequires:  kf6-kcolorscheme-devel
 
 Requires:       kf6-kirigami
 Requires:       kf6-kirigami-addons
