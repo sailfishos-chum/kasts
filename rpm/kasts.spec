@@ -13,7 +13,7 @@ Source4:        kasts-256.png
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
-BuildRequires:  opt-extra-cmake-modules
+BuildRequires:  kf6-extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  taglib-devel
 BuildRequires:  qt6-qtbase-devel
@@ -35,6 +35,7 @@ Requires:       kf6-kirigami-addons
 Requires:       kf6-threadweaver
 Requires:       kf6-syndication
 Requires:       qt6-qtkeychain
+Requires:       qt-runner-qt6
 
 %global __requires_exclude ^[libKMediaSession|libKastsSolidExtras].*$
 
