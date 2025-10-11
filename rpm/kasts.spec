@@ -83,11 +83,10 @@ install -p -m644 -D %{SOURCE4} \
 %{_datadir}/icons/hicolor/scalable/actions/media-playback-cloud.svg
 %{_datadir}/icons/hicolor/scalable/apps/%{name}*.svg
 %{_datadir}/icons/hicolor/*/apps/%{name}.*
-#{_libdir}/libKastsSolidExtras.so
 %{_libdir}/libKMediaSession.so
-#{_libdir}/qt6/qml/org/kde/kmediasession/libkmediasession-qmlplugin.so
-#{}_libdir}/qt6/qml/org/kde/kmediasession/qmldir
 %{_kf6_metainfodir}/org.kde.%{name}.appdata.xml
-#{_kf6_qmldir}/org/kde/#{name}/solidextras/libkasts-solidextrasqmlplugin.so
-#{_kf6_qmldir}/org/kde/#{name}/solidextras/qmldir
+%{_kf6_qmldir}/org/kde/kmediasession/kde-qmlmodule.version
+%{_kf6_qmldir}/org/kde/kmediasession/kmediasessionqmlplugin.qmltypes
+%{_kf6_qmldir}/org/kde/kmediasession/libkmediasessionqmlplugin.so
+%{_kf6_qmldir}/org/kde/kmediasession/qmldir
 %license LICENSES/*
