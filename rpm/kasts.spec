@@ -1,11 +1,12 @@
 Name:           kasts
-Version:        24.08.2
+Version:        25.08.2
 Release:        1%{?dist}
 License:        GPLv2 and GPLv2+ and GPLv3+ and BSD and LGPLv3+
 Summary:        A mobile podcast application
 Url:            https://apps.kde.org/%{name}
 Source:         https://download.kde.org/stable/plasma-mobile/%{version}/%{name}-%{version}.tar.xz
 Patch0:         0001-qtrunner-desktop.patch
+Patch1:         0002-add-sailfishos.patch
 Source1:        kasts-86.png
 Source2:        kasts-108.png
 Source3:        kasts-128.png
@@ -17,6 +18,7 @@ BuildRequires:  kf6-extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  taglib-devel
 BuildRequires:  qt6-qtbase-devel
+BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  qt6-qtkeychain-devel
 BuildRequires:  qt6-qtmultimedia-devel
 BuildRequires:  qt6-qtsvg-devel
@@ -30,13 +32,22 @@ BuildRequires:  kf6-threadweaver-devel
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  kf6-kcodecs-devel
 BuildRequires:  kf6-kcolorscheme-devel
+BuildRequires:  kf6-kiconthemes-devel
+BuildRequires:  kf6-kdbusaddons-devel
+BuildRequires:  kf6-kwindowsystem-devel
+BuildRequires:  pkgconfig(gstreamer-1.0)
+BuildRequires:  kf6-breeze-icons-devel
 
 Requires:       kf6-kirigami
 Requires:       kf6-kirigami-addons
 Requires:       kf6-threadweaver
 Requires:       kf6-syndication
+Requires:       kf6-kiconthemes
+Requires:		kf6-kdbusaddons
+Requires:		kf6-kwindowsystem
 Requires:       qt6-qtkeychain
 Requires:       qt-runner-qt6
+Requires:	  	kf6-breeze-icons
 
 %global __requires_exclude ^[libKMediaSession|libKastsSolidExtras].*$
 
@@ -48,7 +59,7 @@ Requires:       qt-runner-qt6
 
 %build
 
-%cmake_kf6
+%cmake_kf6 -DSAILFISHOS=1
 %cmake_build
 
 %install

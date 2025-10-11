@@ -1,0 +1,65 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9c6a1c18..b067b2fd 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -21,6 +21,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
+ set(KF_MIN_VERSION "6.12.0")
+ set(QT_MIN_VERSION "6.5.0")
+ 
++option(SAILFISHOS "Build for SailfishOS" OFF)
++
+ find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
+ 
+ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+@@ -91,6 +93,9 @@ if (ANDROID)
+     find_package(SQLite3)
+     find_package(ZLIB)
+     find_package(Gradle)
++elseif(SAILFISHOS)
++    add_definitions( -DSAILFISHOS=1 )
++    find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS Svg)
+ else()
+     find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS Widgets DBus)
+     find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS Crash)
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index bef40024..5028c3d5 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -350,6 +350,8 @@ if(ANDROID)
+         kde-symbolic
+     )
+     ecm_add_android_apk(kasts ANDROID_DIR ${CMAKE_SOURCE_DIR}/android)
++elseif(SAILFISHOS)
++    target_link_libraries(kasts PRIVATE Qt::Widgets)
+ else()
+     target_link_libraries(kasts PRIVATE Qt::Widgets KF6::Crash)
+ endif()
+diff --git a/src/main.cpp b/src/main.cpp
+index 75d8f8df..717f9831 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -21,11 +21,14 @@
+ #ifdef Q_OS_ANDROID
+ #include <QGuiApplication>
+ #else
+-#include <QApplication>
+ 
++#ifndef SAILFISHOS
+ #include <KCrash>
+ #endif
+ 
++#include <QApplication>
++#endif
++
+ #include <KAboutData>
+ #ifdef HAVE_KDBUSADDONS
+ #include <KDBusService>
+@@ -142,7 +145,7 @@ int main(int argc, char *argv[])
+     about.addAuthor(i18n("Bart De Vries"), QString(), QStringLiteral("bart@mogwai.be"));
+     KAboutData::setApplicationData(about);
+ 
+-#ifndef Q_OS_ANDROID
++#if !defined(Q_OS_ANDROID) && !defined(SAILFISHOS)
+     QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("kasts")));
+ 
+     KCrash::initialize();
