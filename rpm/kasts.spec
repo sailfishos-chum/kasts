@@ -1,11 +1,11 @@
 Name:           kasts
-Version:        25.08.2
+Version:        26.04.3
 Release:        1%{?dist}
 License:        GPLv2 and GPLv2+ and GPLv3+ and BSD and LGPLv3+
 Summary:        A mobile podcast application
 Url:            https://apps.kde.org/%{name}
 Source:         https://download.kde.org/stable/plasma-mobile/%{version}/%{name}-%{version}.tar.xz
-Patch0:         0001-qtrunner-desktop.patch
+Patch0:         0001-qt6-start-desktop.patch
 Patch1:         0002-add-sailfishos.patch
 Source1:        kasts-86.png
 Source2:        kasts-108.png
@@ -46,7 +46,7 @@ Requires:       kf6-kiconthemes
 Requires:		kf6-kdbusaddons
 Requires:		kf6-kwindowsystem
 Requires:       qt6-qtkeychain
-Requires:       qt-runner-qt6
+Requires:       qt6-sailfishos-util
 Requires:	  	kf6-breeze-icons
 
 %global __requires_exclude ^[libKMediaSession|libKastsSolidExtras].*$

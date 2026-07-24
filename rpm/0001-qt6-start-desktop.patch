@@ -7,7 +7,7 @@ index 3a07488b..21704856 100644
  Keywords[zh_TW]=podcast
  Icon=kasts
 -Exec=kasts
-+Exec=qt-runner /usr/bin/kasts
++Exec=qt6-start /usr/bin/kasts
  Type=Application
  Categories=Network;Qt;KDE;Feed;
  Terminal=false
